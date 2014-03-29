@@ -22,7 +22,7 @@ public class Koan2
         String cql = null;
 
         // YOUR CODE GOES HERE
-
+        cql = "Create n";
         engine.execute( cql );
 
         final ExecutionResult executionResult = engine.execute( "START n=node(*) return n" );
@@ -37,6 +37,7 @@ public class Koan2
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "Create (n { firstname : 'Tom', lastname : 'Baker'})";
 
         engine.execute( cql );
 
@@ -56,7 +57,9 @@ public class Koan2
 
         // YOUR CODE GOES HERE
 
+        cql = "Create ({character: 'Doctor'})<-[:ENEMY_OF]-({character: 'Master'})";
         engine.execute( cql );
+
 
         final ExecutionResult executionResult = engine.execute(
                 "MATCH (a {character: 'Doctor'})<-[:ENEMY_OF]-(b {character: 'Master'}) \n" +
