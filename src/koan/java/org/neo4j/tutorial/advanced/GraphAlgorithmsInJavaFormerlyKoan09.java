@@ -62,13 +62,6 @@ public class GraphAlgorithmsInJavaFormerlyKoan09
             Iterable<Path> paths = null;
 
             // YOUR CODE GOES HERE
-            // SNIPPET_START
-
-            PathFinder<Path> pathFinder = GraphAlgoFactory.pathsWithLength(
-                    Traversal.expanderForTypes( DoctorWhoRelationships.APPEARED_IN, Direction.BOTH ), 2 );
-            paths = pathFinder.findAllPaths( rose, daleks );
-
-            // SNIPPET_END
 
             tx.success();
 
@@ -104,13 +97,6 @@ public class GraphAlgorithmsInJavaFormerlyKoan09
             Path path = null;
 
             // YOUR CODE GOES HERE
-            // SNIPPET_START
-
-            PathFinder<Path> pathFinder = GraphAlgoFactory.shortestPath(
-                    Traversal.expanderForTypes( DoctorWhoRelationships.REGENERATED_TO, Direction.OUTGOING ), 100 );
-            path = pathFinder.findSinglePath( delgado, simm );
-
-            // SNIPPET_END
 
             tx.success();
 
@@ -134,13 +120,6 @@ public class GraphAlgorithmsInJavaFormerlyKoan09
             Path path = null;
 
             // YOUR CODE GOES HERE
-            // SNIPPET_START
-
-            PathFinder<Path> pathFinder = GraphAlgoFactory.pathsWithLength(
-                    Traversal.expanderForTypes( DoctorWhoRelationships.APPEARED_IN, Direction.BOTH ), 2 );
-            path = pathFinder.findSinglePath( tennant, smith );
-
-            // SNIPPET_END
 
             tx.success();
 

@@ -44,13 +44,6 @@ public class Koan15
         String cql = "MATCH (c:Character)-[:COMPANION_OF]->(:Character {character: 'Doctor'})\n";
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql += "WITH c\n" +
-                "ORDER BY c.character\n" +
-                "RETURN collect(c.character) AS characters\n";
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
 
@@ -72,13 +65,6 @@ public class Koan15
                 "-[:COMPANION_OF]->(:Character {character: 'Doctor'})\n";
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql += "WITH companion, count(ep) AS numberOfEpisodes\n" +
-                "WHERE numberOfEpisodes > 20\n" +
-                "RETURN companion.character AS companions";
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
 

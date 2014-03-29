@@ -50,12 +50,6 @@ public class Koan5
         // Hint: Amy Pond is definitely in the graph, and the actors may be too. How can MERGE help?
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MERGE (amy:Character {character: 'Amy Pond'})<-[:PLAYED]-(:Actor {actor: 'Karen Gillan'})\n" +
-                "MERGE (amy)<-[:PLAYED]-(:Actor {actor: 'Caitlin Blackwood', age: 6})";
-
-        // SNIPPET_END
 
         engine.execute( cql );
 
@@ -72,13 +66,6 @@ public class Koan5
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MERGE (amy:Character {character: 'Amy Pond'})-[:LOVES]->(rory:Character {character: 'Rory Williams'})" +
-                "\n" +
-                "MERGE (amy)<-[:LOVES]-(rory)\n";
-
-        // SNIPPET_END
 
         engine.execute( cql );
 
@@ -95,13 +82,6 @@ public class Koan5
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MERGE (:Character {character: 'Amy Pond'})-[c:COMPANION_OF]->(:Character {character: 'Doctor'})" +
-                "ON MATCH SET c.start = 2010, c.end = 2013";
-
-
-        // SNIPPET_END
 
         engine.execute( cql );
 

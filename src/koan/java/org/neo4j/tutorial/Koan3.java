@@ -47,11 +47,6 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (doctor:Character {character: 'Doctor'}) RETURN doctor";
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
         Iterator<Node> containsTheDoctor = result.javaColumnAs( "doctor" );
@@ -70,12 +65,6 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (episode:Episode) RETURN episode";
-
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
 
@@ -103,12 +92,6 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (cybermen:Species {species: 'Cyberman'})-[:APPEARED_IN]->(episode:Episode) " +
-                "RETURN episode";
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
 
@@ -141,17 +124,6 @@ public class Koan3
 
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (tennant:Actor)-[:APPEARED_IN]->(episode:Episode), " +
-                "(rose:Character)-[:APPEARED_IN]->(episode:Episode), " +
-                "(daleks:Species)-[:APPEARED_IN]->(episode:Episode) " +
-                "WHERE tennant.actor ='David Tennant' " +
-                "AND rose.character = 'Rose Tyler' " +
-                "AND daleks.species = 'Dalek' " +
-                "RETURN episode";
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
 
@@ -173,14 +145,6 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (doctor:Character {character: 'Doctor'})<-[:COMPANION_OF]-(companion:Character) " +
-                "WHERE has(companion.wikipedia) " +
-                "RETURN companion.wikipedia";
-
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
         Iterator<String> iterator = result.javaColumnAs( "companion.wikipedia" );
@@ -200,13 +164,6 @@ public class Koan3
         {
 
             // YOUR CODE GOES HERE
-            // SNIPPET_START
-
-            cql += "MATCH (doctor:Character {character: 'Doctor'})<-[:ENEMY_OF|COMPANION_OF]-(other) ";
-            cql += "WHERE has(other.character) ";
-            cql += "RETURN DISTINCT other.character";
-
-            // SNIPPET_END
 
             ExecutionResult result = engine.execute( cql );
 

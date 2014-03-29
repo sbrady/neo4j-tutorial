@@ -48,16 +48,6 @@ public class Koan8
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (doctor:Character {character: 'Doctor'})<-[r:COMPANION_OF]-(companion:Character) " +
-                "WHERE has(companion.firstname) AND companion.firstname='James' " +
-                "AND has(companion.initial) AND companion.initial='T' " +
-                "AND has(companion.lastname) AND companion.lastname='Kirk' " +
-                "DELETE r, companion";
-
-
-        // SNIPPET_END
 
         engine.execute( cql );
 
@@ -73,14 +63,6 @@ public class Koan8
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (doctor:Character {character: 'Doctor'})" +
-                "<-[:PLAYED]-(actor:Actor) " +
-                "WHERE HAS (actor.salary) " +
-                "REMOVE actor.salary";
-
-        // SNIPPET_END
 
         // Just for now, while we're converting the builder code to Cypher
         engine.execute( cql );
@@ -100,13 +82,6 @@ public class Koan8
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH (n)\n" +
-                "OPTIONAL MATCH (n)-[r]-()\n" +
-                "DELETE n,r";
-
-        // SNIPPET_END
 
         engine.execute( cql );
 

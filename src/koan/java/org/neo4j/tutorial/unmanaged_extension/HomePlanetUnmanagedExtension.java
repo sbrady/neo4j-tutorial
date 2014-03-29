@@ -20,31 +20,4 @@ import static org.neo4j.kernel.impl.util.StringLogger.DEV_NULL;
 public class HomePlanetUnmanagedExtension
 {
     // YOUR CODE GOES HERE
-    // SNIPPET_START
-
-    @GET
-    @Path("/homeplanet")
-    public String findHomePlanetFor( @PathParam("character") String character, @Context GraphDatabaseService db )
-    {
-        ExecutionEngine engine = new ExecutionEngine( db, DEV_NULL );
-
-        String cql = "MATCH (doctor:Character {character: 'Doctor'})-[:COMES_FROM]->(home:Planet)" +
-                lineSeparator() +
-                "RETURN home.planet";
-
-        ExecutionResult result = engine.execute( cql );
-        String planet = (String) result.javaColumnAs( "home.planet" ).next();
-
-        if ( planet != null )
-        {
-            return planet;
-        }
-        else
-        {
-            throw new NotFoundException(
-                    String.format( "The specified character [%s] was not found in the database", character ) );
-        }
-    }
-
-    // SNIPPET_END
 }

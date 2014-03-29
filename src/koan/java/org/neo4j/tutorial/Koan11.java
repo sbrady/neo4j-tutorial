@@ -37,14 +37,6 @@ public class Koan11
         String cql = null;
 
         // YOUR CODE GOES HERE
-        // SNIPPET_START
-
-        cql = "MATCH path = shortestPath( (sarahJaneSmith:Character)-[*..50]-(skaro:Planet) )" +
-                "WHERE sarahJaneSmith.character = 'Sarah Jane Smith' " +
-                "AND skaro.planet = 'Skaro'" +
-                "RETURN length(path) as length";
-
-        // SNIPPET_END
 
         ExecutionResult result = engine.execute( cql );
 
