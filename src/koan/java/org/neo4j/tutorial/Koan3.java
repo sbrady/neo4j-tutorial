@@ -47,6 +47,7 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH (doctor:Character{character: 'Doctor'}) RETURN doctor";
 
         ExecutionResult result = engine.execute( cql );
         Iterator<Node> containsTheDoctor = result.javaColumnAs( "doctor" );
@@ -65,6 +66,7 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql= "MATCH (episode:Episode) RETURN episode";
 
         ExecutionResult result = engine.execute( cql );
 
@@ -92,6 +94,8 @@ public class Koan3
         String cql = null;
 
         // YOUR CODE GOES HERE
+
+        cql= "MATCH (:Species{species:'Cyberman'})-[:APPEARED_IN]->(episode:Episode) RETURN episode";
 
         ExecutionResult result = engine.execute( cql );
 
@@ -125,6 +129,12 @@ public class Koan3
 
         // YOUR CODE GOES HERE
 
+        cql = "MATCH (:Actor {actor:'David Tennant'})-[:APPEARED_IN]->(episode:Episode)," +
+                "(episode)<-[:APPEARED_IN]-(:Character {character:'Rose Tyler'})," +
+                "(episode)<-[:APPEARED_IN]-(:Species{species : 'Dalek'})" +
+                "RETURN episode";
+
+
         ExecutionResult result = engine.execute( cql );
 
         Iterator<Node> episodes = result.javaColumnAs( "episode" );
@@ -143,6 +153,9 @@ public class Koan3
     {
         ExecutionEngine engine = new ExecutionEngine( universe.getDatabase(), DEV_NULL );
         String cql = null;
+        cql = "MATCH (n)<-[:COMPANION_OF]-(companion)" +
+                "WHERE has(companion.wikipedia)" +
+                "RETURN companion.wikipedia";
 
         // YOUR CODE GOES HERE
 
@@ -164,7 +177,8 @@ public class Koan3
         {
 
             // YOUR CODE GOES HERE
-
+            cql = "MATCH(doctor:Character {character : 'Doctor'})<-[:ENEMY_OF|COMPANION_OF]-(characters:Character)" +
+                    "RETURN DISTINCT characters";
             ExecutionResult result = engine.execute( cql );
 
             assertEquals( 159, result.size() );
