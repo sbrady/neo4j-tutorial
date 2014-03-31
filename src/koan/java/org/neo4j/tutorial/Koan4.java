@@ -99,9 +99,6 @@ public class Koan4
 
         // YOUR CODE GOES HERE
 
-        cql += "SET a:Scottish";
-
-        // SNIPPET_END
 
         engine.execute( cql );
 
