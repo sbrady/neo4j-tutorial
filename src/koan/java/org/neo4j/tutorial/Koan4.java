@@ -24,6 +24,7 @@ public class Koan4
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "CREATE ({actor:'David Tennant'})";
 
         engine.execute( cql );
 
@@ -39,9 +40,8 @@ public class Koan4
 
         engine.execute( "CREATE ({actor: 'David Tennant'}) " );
 
-        String cql = "MATCH (a {actor: 'David Tennant'})\n";
-
-        // YOUR CODE GOES HERE
+        String cql = "MATCH (a {actor: 'David Tennant'})\n" +
+                "SET a.original_name = 'David McDonald' ";
 
         engine.execute( cql );
 
@@ -61,7 +61,7 @@ public class Koan4
         String cql = "MATCH (a {actor: 'David Tennant'})\n";
 
         // YOUR CODE GOES HERE
-
+        cql = cql + "SET a.original_name = 'Ronald McDonald'";
         engine.execute( cql );
 
         final ExecutionResult executionResult = engine.execute( "MATCH (a {actor: 'David Tennant'}) RETURN a" +
@@ -80,6 +80,7 @@ public class Koan4
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "CREATE (:Actor{actor: 'David Tennant'})";
 
         engine.execute( cql );
 
@@ -98,7 +99,7 @@ public class Koan4
         String cql = "MATCH (a {actor: 'David Tennant'})\n";
 
         // YOUR CODE GOES HERE
-
+        cql = cql + "SET a:Scottish";
 
         engine.execute( cql );
 
@@ -119,6 +120,7 @@ public class Koan4
         String cql = "MATCH (a:Actor {actor: 'David Tennant'})\n";
 
         // YOUR CODE GOES HERE
+        cql = cql + "SET a:Scottish:Male";
 
         engine.execute( cql );
 
