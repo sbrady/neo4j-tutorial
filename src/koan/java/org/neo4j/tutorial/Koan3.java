@@ -173,6 +173,7 @@ public class Koan3
     {
         ExecutionEngine engine = new ExecutionEngine( universe.getDatabase(), DEV_NULL );
         String cql = "";
+
         try ( Transaction transaction = universe.getDatabase().beginTx() )
         {
 

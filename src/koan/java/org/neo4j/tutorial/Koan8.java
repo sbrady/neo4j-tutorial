@@ -49,7 +49,7 @@ public class Koan8
 
         // YOUR CODE GOES HERE
 
-        engine.execute( cql );
+//        engine.execute( cql );
 
         final ExecutionResult executionResult = engine.execute( deletedKirkQuery );
 
