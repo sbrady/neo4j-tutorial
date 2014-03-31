@@ -51,6 +51,9 @@ public class Koan5
 
         // YOUR CODE GOES HERE
 
+        cql = " MERGE (ap:Character {character: 'Amy Pond'})<-[:PLAYED]-(:Actor{actor: 'Karen Gillan'})" +
+                "  MERGE (ap)<-[:PLAYED]-(:Actor{actor: 'Caitlin Blackwood'})";
+
         engine.execute( cql );
 
         ResourceIterator<Object> iterator = engine.execute( "MATCH (:Character {character: 'Amy Pond'})" +
@@ -67,6 +70,9 @@ public class Koan5
 
         // YOUR CODE GOES HERE
 
+        cql = "MERGE (ap:Character {character: 'Amy Pond'})-[:LOVES]->(rw:Character {character: 'Rory Williams'})" +
+                "MERGE (rw)-[:LOVES]->(ap)";
+
         engine.execute( cql );
 
         assertThat( engine.execute( "MATCH (:Character {character: 'Amy Pond'})-[loves:LOVES]->(:Character " +
@@ -82,6 +88,9 @@ public class Koan5
         String cql = null;
 
         // YOUR CODE GOES HERE
+
+        cql = "MERGE (:Character {character: 'Amy Pond'})-[c:COMPANION_OF]->(:Character {character: 'Doctor'})" +
+                "ON MATCH SET c.start = 2010, c.end = 2013";
 
         engine.execute( cql );
 
