@@ -54,7 +54,11 @@ public class Koan6
 
         // YOUR CODE GOES HERE
 
+        cql = "MATCH (c:Character)" +
+                "OPTIONAL MATCH (c)-[:OWNS]->(t:Thing) " +
+                "RETURN c.character,t.thing";
         ExecutionResult result = engine.execute( cql );
+
 
         assertThat( result, containsOwnersAndThings( asSet(
                 pair( "Doctor", "Tardis" ),
@@ -73,6 +77,12 @@ public class Koan6
         String cql = null;
 
         // YOUR CODE GOES HERE
+
+        cql = "MATCH (a)" +
+                " OPTIONAL MATCH (a)-[r]-()" +
+                " SET a.visited = true" +
+                " SET r.visited = true";
+
 
         ExecutionResult result = engine.execute( cql );
 
@@ -105,9 +115,11 @@ public class Koan6
             {
                 for ( PropertyContainer container : propertyContainers )
                 {
-                    if ( !(container.hasProperty( "visited" ) && container.getProperty( "visited" ).equals( "true" )) )
+                    if ( container.hasProperty( "visited" ) && container.getProperty( "visited" ).equals( true ) )
                     {
                         return true;
+                    } else {
+                        return false;
                     }
                 }
                 return false;
