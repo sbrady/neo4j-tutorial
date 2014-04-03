@@ -47,8 +47,8 @@ public class Koan7
         ExecutionEngine engine = new ExecutionEngine( universe.getDatabase(), DEV_NULL );
         String cql = null;
 
-        // YOUR CODE GOES HERE
-
+        cql = "MATCH(:Character{character : 'Doctor' })<-[:PLAYED]-(actor:Actor)" +
+                " RETURN count(actor) AS numberOfActorsWhoPlayedTheDoctor";
         ExecutionResult result = engine.execute( cql );
 
         Long actorsCount = (Long) result.javaColumnAs( "numberOfActorsWhoPlayedTheDoctor" ).next();
@@ -63,6 +63,9 @@ public class Koan7
         String cql = null;
 
         // YOUR CODE GOES HERE
+
+        cql = "MATCH(:Character{character : 'Doctor' })<-[:PLAYED]-(:Actor)-[r:REGENERATED_TO]->()" +
+                "RETURN max(r.year) AS latest, min(r.year) AS earliest";
 
         ExecutionResult result = engine.execute( cql );
 
@@ -79,6 +82,10 @@ public class Koan7
 
         // YOUR CODE GOES HERE
 
+        cql = "Match (:Actor{actor : 'Freema Agyeman'})-[:PLAYED]->()-[:APPEARED_IN]->(e:Episode)" +
+                "<-[:APPEARED_IN]-(:Actor{actor : 'David Tennant'})" +
+                " RETURN min(e.episode) AS earliest";
+
         ExecutionResult result = engine.execute( cql );
 
         assertEquals( "177", result.javaColumnAs( "earliest" ).next() );
@@ -91,6 +98,8 @@ public class Koan7
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH (c:Character{character : 'Doctor'})<-[:PLAYED]-(actor:Actor)" +
+                " RETURN avg(actor.salary) AS cash";
 
         ExecutionResult result = engine.execute( cql );
 
@@ -104,6 +113,11 @@ public class Koan7
         String cql = null;
 
         // YOUR CODE GOES HERE
+
+        cql = "MATCH (episode:Episode)<-[:APPEARED_IN]-(:Actor{actor : 'Peter Davison'})-[:PLAYED]->(doc:Character)" +
+                "<-[:ENEMY_OF]-(enemy)-[:APPEARED_IN]->(episode)" +
+                " RETURN episode.episode, episode.title, collect(enemy.species) AS species, collect(enemy.character) AS characters" +
+                " ORDER BY episode.episode" ;
 
         ExecutionResult result = engine.execute( cql );
 
@@ -121,8 +135,12 @@ public class Koan7
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH (:Character{character : 'Rose Tyler'})-[:APPEARED_IN]->(episode:Episode)," +
+                "(:Character{character : 'Doctor'})-[:ENEMY_OF]->(enemy:Species)-[:APPEARED_IN]->(episode)" +
+                "RETURN DISTINCT enemy.species AS enemySpecies";
 
         ExecutionResult result = engine.execute( cql );
+
         Iterator<String> enemySpecies = result.javaColumnAs( "enemySpecies" );
 
         assertThat( asIterable( enemySpecies ),
