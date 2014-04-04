@@ -48,10 +48,13 @@ public class Koan8
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH (kirk:Character{firstname : 'James', initial :'T'})-[r]->()" +
+                " DELETE kirk,r";
 
-//        engine.execute( cql );
+        engine.execute( cql );
 
         final ExecutionResult executionResult = engine.execute( deletedKirkQuery );
+
 
         assertEquals( 0, executionResult.size() );
     }
@@ -64,6 +67,8 @@ public class Koan8
 
         // YOUR CODE GOES HERE
 
+        cql = "MATCH (doctor:Character {character: 'Doctor'})<-[:PLAYED]-(actor:Actor)" +
+                " REMOVE actor.salary";
         // Just for now, while we're converting the builder code to Cypher
         engine.execute( cql );
 
@@ -82,6 +87,9 @@ public class Koan8
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH (n)" +
+                " OPTIONAL MATCH (n)-[r]-()" +
+                " DELETE n, r";
 
         engine.execute( cql );
 
