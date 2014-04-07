@@ -44,6 +44,10 @@ public class Koan9
 
         // YOUR CODE GOES HERE
 
+        cql = "MATCH (episode:Episode)<-[:USED_IN]-(:Props)<-[:MEMBER_OF]-(prop:Prop)-[:COMPOSED_OF]->(part:Part)" +
+                "-[:ORIGINAL_PROP]->(originalprop:Prop)" +
+                " RETURN originalprop.prop, part.part, count(episode) ORDER BY count(episode) DESC LIMIT 1";
+
         ExecutionResult result = engine.execute( cql );
 
         assertHardestWorkingPropParts( result.javaIterator(), "Dalek 1", "shoulder", 15l );
