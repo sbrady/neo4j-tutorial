@@ -37,6 +37,8 @@ public class Koan10
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH (tom:Actor{actor : 'Tom Baker'})-[r:REGENERATED_TO*]->(chris:Actor{actor : 'Christopher Eccleston'})" +
+                " return length(r) as regenerations";
 
         ExecutionResult result = engine.execute( cql );
 
@@ -50,9 +52,13 @@ public class Koan10
         String cql = null;
 
         // YOUR CODE GOES HERE
-
+        cql = "MATCH (master:Character{character : 'Master'})-[:APPEARED_IN]->(master_eps:Episode), \n" +
+                " path = (master_eps)-[next_ep_hops:NEXT*]->(:Episode)" +
+                " WITH nodes(path) as eps, master as master, path as path "+
+                " WHERE ALL(ep in eps WHERE master-[:APPEARED_IN]->ep)" +
+                " RETURN length(path) as noOfPathHops"+
+                " ORDER BY noOfPathHops DESC LIMIT 1";
         ExecutionResult result = engine.execute( cql );
-
         // noOfPathHops is one less than the number of episodes in a story arc
         final int noOfStories = 5;
         assertEquals( noOfStories - 1, result.javaColumnAs( "noOfPathHops" ).next() );
