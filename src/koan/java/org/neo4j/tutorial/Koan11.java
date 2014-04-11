@@ -37,9 +37,10 @@ public class Koan11
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "MATCH path = shortestPath((sarahJaneSmith:Character{character : 'Sarah Jane Smith' })-[*]-(skaro:Planet{planet : 'Skaro'}))" +
+                " RETURN length(path) as length";
 
         ExecutionResult result = engine.execute( cql );
-
         assertEquals( 3, result.javaColumnAs( "length" ).next() );
     }
 }
