@@ -47,6 +47,8 @@ public class Koan13
 
         // YOUR CODE GOES HERE
 
+        cql = "CREATE CONSTRAINT ON (actor:Actor) ASSERT actor.actor IS UNIQUE";
+
         engine.execute( cql );
 
         engine.execute( "CREATE (:Actor {actor: 'David Tennant'})" );
