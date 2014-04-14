@@ -50,7 +50,7 @@ public class Koan12
         String cql = null;
 
         // YOUR CODE GOES HERE
-
+        cql = "CREATE INDEX ON :Species(species)";
         engine.execute( cql );
 
         assertThat( universe.getDatabase(), hasIndex( "Species" ) );
@@ -63,6 +63,9 @@ public class Koan12
         String cql = null;
 
         // YOUR CODE GOES HERE
+        cql = "CREATE INDEX ON :Species(species)";
+        engine.execute( cql );
+        cql =" DROP INDEX ON :Species(species)";
 
         engine.execute( cql );
 
