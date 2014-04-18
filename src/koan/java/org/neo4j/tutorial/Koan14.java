@@ -42,6 +42,10 @@ public class Koan14
 
         // YOUR CODE GOES HERE
 
+        cql = "MATCH path = (:Episode{episode : '1'})-[:NEXT*5..5]->(:Episode)" +
+                " RETURN extract(ep in nodes(path) | ep.title) AS episodes";
+
+
         ExecutionResult result = engine.execute( cql );
 
         assertThat( result, containsOnly( "An Unearthly Child", "The Daleks", "The Edge of Destruction",
@@ -56,6 +60,8 @@ public class Koan14
                 "(endEp:Episode {title: 'The Armageddon Factor'})\n";
 
         // YOUR CODE GOES HERE
+
+        cql = cql + "FOREACH(r in relationships(p) | SET r.story_arc = 'FOO')";
 
         engine.execute( cql );
 
